@@ -87,10 +87,14 @@ Este fluxo descreve a entrega pretendida de telas e formulários dinâmicos via 
 
 1. **Requisição e Rastreabilidade Contextual:** O usuário acessa uma rota no navegador; o **Django** intercepta a chamada e propaga um **Correlation ID** unificado.
 2. **Leitura de Contrato e Telemetria Homeostática:** O Django busca o metadado estruturado no **Redis**:
-   * **Cache hit:** O contrato é lido do Redis; latência-alvo e métrica ainda não foram definidas.
-   * **Cache miss:** Fallback ao Oracle e repopulação assíncrona do Redis são comportamentos propostos. Definir o canal de acesso, falhas, retries e impacto na resposta antes de implementar.
-3. **Validação e Renderização Dinâmica:** O motor Django valida o contrato segundo schema aprovado e renderiza os componentes Server-Driven UI.
-4. **Submissão e Continuidade:** A proposta propaga o Correlation ID com o formulário para o backend; formato e garantias de rastreabilidade ainda precisam ser definidos.
+   * **Equilíbrio (Cache Hit):** Contrato recuperado em sub-milissegundo com incremento da métrica de sucesso (`sds_cache_hit_total`).
+   * **Perturbação Controlada (Cache Miss):** Caso a chave esteja ausente, o sistema ativa seus mecanismos homeostáticos para proteger o organismo:
+     * **Prioridade Absoluta à Experiência do Cliente (Zero Bloqueio):** O Django consulta diretamente as tabelas relacionais no Oracle **apenas o estritamente necessário para entregar a resposta imediata ao usuário**, blindando a experiência de qualquer latência de infraestrutura.
+     * **Alerta Precoce (Nocicepção):** Incrementa a métrica de falha (`sds_cache_miss_total`) e emite um **Log Estruturado de Alerta** com o Correlation ID. (Taxas anormais de *miss* disparam alertas automáticos de desvio de padrão na infraestrutura).
+     * **Auto-Cura Assíncrona (Self-Healing):** Paralelamente e em segundo plano, uma task assíncrona extrai o contrato do Oracle e repopula o Redis, reestabelecendo o equilíbrio térmico do cache para as requisições seguintes sem que o cliente atual espere.
+3. **Validação e Renderização Dinâmica:** O motor Django valida o contrato relacional e renderiza os componentes Server-Driven UI.
+4. **Submissão e Continuidade:** O formulário preenchido é despachado com o Correlation ID para o backend, garantindo rastreabilidade fechada.
+
 
 ### 2. Fluxo de Processamento de Backend, Cargas em Lote e Retomada (PL/SQL)
 Este fluxo descreve o processamento transacional e em lote proposto para o Oracle Database. A estratégia de retomada e as garantias de idempotência devem ser definidas por processo:
