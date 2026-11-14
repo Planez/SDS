@@ -180,7 +180,7 @@ sds-framework/
 │   └── security/                           # Controles de segurança, conforme estratégia aprovada
 ├── frontend/                               # Motor de Interface Web (Python / Django - SDUI)
 │   ├── core/                               # Configurações globais do Django e middleware de Correlation ID
-│   ├── sdui/                               # Interpretador de Server-Driven UI e contratos relacionais
+│   ├── sdui/                               # Interpretador e contratos relacionais
 │   ├── cache/                              # Integração com Redis, gestão de chaves e fallbacks assíncronos
 │   └── services/                           # Integrações com banco ou APIs, conforme canal aprovado
 ├── workers/                                # Barramento de Tarefas Assíncronas (Python + Celery)
