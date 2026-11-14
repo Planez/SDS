@@ -48,7 +48,7 @@ Diretrizes de engenharia:
 - Definir a ferramenta e a estratégia de testes automatizados para tipos e métodos PL/SQL conforme as capacidades do ambiente Oracle, preservando o requisito de testabilidade independente.
 
 ## STACK TECNOLÓGICA PROPOSTA E DIVISÃO DE RESPONSABILIDADES
-Descrição: Registro da stack considerada para o framework SDS na OCI e das responsabilidades pretendidas para seus componentes. A OCI está confirmada; as demais tecnologias e versões desta seção ainda dependem de aprovação.
+Descrição: Registro da stack considerada para o framework SDS na OCI e das responsabilidades pretendidas para seus componentes. Tecnologias e versões desta seção estão confirmadas.
 VALOR PARA A IA:
 - Registrar a arquitetura tecnológica em avaliação e evitar tratar tecnologias ou versões não aprovadas como restrições imutáveis.
 - Orientar a discussão sobre responsabilidades e fronteiras entre componentes.
@@ -147,7 +147,7 @@ Os mecanismos de observabilidade e seus objetivos de serviço ainda precisam de 
 
 Os itens abaixo precisam de decisão ou especificação antes de orientar a implementação:
 
-- **Stack e versões:** a OCI está confirmada. Confirmar Oracle Database 26ai, PL/SQL, Django, Redis, Celery, ORDS e demais tecnologias como escolhas aprovadas ou substituíveis.
+- **Stack e versões:** a OCI,  Oracle Database 26ai, PL/SQL, Django, Redis, Celery, ORDS e demais tecnologias são escolhas aprovadas.
 - **Testes de tipos e métodos PL/SQL:** a orientação a objetos forte por meio de tipos de objeto e métodos PL/SQL está definida como diretriz. Definir a ferramenta e a estratégia concreta para executar testes automatizados e isolados desses tipos e métodos.
 - **Acesso do Django ao Oracle:** escolher o canal oficial e alinhar a regra de não utilizar ORDS internamente com a árvore de diretórios e os fluxos.
 - **Sincronização Oracle–Redis:** escolher mecanismo, consistência, retries, comportamento em indisponibilidade e eventual fallback.
