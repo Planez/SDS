@@ -178,7 +178,7 @@ sds-framework/
 │   │   └── packages/                       # Pacotes complementares aos tipos de objeto
 │   ├── triggers/                           # Triggers de banco, se aprovadas para o caso de uso
 │   └── security/                           # Controles de segurança, conforme estratégia aprovada
-├── backend/                                # Motor de Interface Web (Python / Django - SDUI)
+├── frontend/                               # Motor de Interface Web (Python / Django - SDUI)
 │   ├── core/                               # Configurações globais do Django e middleware de Correlation ID
 │   ├── sdui/                               # Interpretador de Server-Driven UI e contratos relacionais
 │   ├── cache/                              # Integração com Redis, gestão de chaves e fallbacks assíncronos
