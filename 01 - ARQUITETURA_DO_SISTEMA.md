@@ -112,7 +112,7 @@ Este fluxo descreve o processamento transacional e em lote proposto para o Oracl
 Para manter o alinhamento interno entre a fonte da verdade e a camada de aceleração:
 
 1. **Alteração Controlada:** Um metadado relacional é atualizado por um administrador no Oracle Database.
-2. **Propagação da alteração:** Trigger ou outro mecanismo transacional é uma alternativa ainda pendente de validação.
+2. **Disparo de Gatilho Homeostático:** A **Trigger** no data source é acionada instantaneamente.
 3. **Atualização ou invalidação do cache:** Definir como a mudança chega ao Redis, como são tratadas falhas e retries e qual janela de inconsistência é aceitável.
 
 ## SEGURANÇA, PROTEÇÃO DE METADADOS E OBSERVABILIDADE
